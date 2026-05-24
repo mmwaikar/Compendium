@@ -350,7 +350,7 @@
     },
     {
       "name": "Scala",
-      "level": "Intermediate",
+      "level": "Advanced",
       "keywords": [
         "Play Framework",
         "Micro-services (using Lagom)",
@@ -363,6 +363,7 @@
       "level": "Advanced",
       "keywords": [
         "JavaScript",
+        "Cytoscape.js",
         "AngularJS",
         "Underscore.js",
         "jQuery",
@@ -389,7 +390,7 @@
     },
     {
       "name": "Design Patterns and Principles",
-      "level": "Intermediate",
+      "level": "Advanced",
       "keywords": [
         "GoF Design Patterns (Template Method, Decorator, Facade, Factory Method, Abstract Factory etc.)",
         "SRP (Single Responsibility Principle)",
@@ -399,7 +400,7 @@
     },
     {
       "name": "Agile",
-      "level": "Intermediate",
+      "level": "Advanced",
       "keywords": [
         "Planning Poker",
         "CI - Continuous Integration (Docker, GitHub Actions, TeamCity)"
