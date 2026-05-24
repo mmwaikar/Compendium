@@ -20,30 +20,32 @@ else
         <FluentLabel Class="resume-summary">Skills are grouped directly from the JSON resume and surfaced with their related keywords.</FluentLabel>
     </FluentStack>
 
-    <FluentStack Class="skills-grid" Orientation="Orientation.Horizontal">
-        @foreach (var skill in resume.Skills ?? [])
-        {
-            <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
-                <FluentStack Class="timeline-header" Orientation="Orientation.Horizontal">
-                    <h2>@skill.Name</h2>
-                    @if (!string.IsNullOrWhiteSpace(skill.Level))
+    <div class="skills-scroll">
+        <FluentStack Class="skills-grid" Orientation="Orientation.Horizontal">
+            @foreach (var skill in resume.Skills ?? [])
+            {
+                <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+                    <FluentStack Class="timeline-header" Orientation="Orientation.Horizontal">
+                        <h2>@skill.Name</h2>
+                        @if (!string.IsNullOrWhiteSpace(skill.Level))
+                        {
+                            <FluentBadge Appearance="Appearance.Accent">@skill.Level</FluentBadge>
+                        }
+                    </FluentStack>
+
+                    @if (skill.Keywords?.Count > 0)
                     {
-                        <FluentBadge Appearance="Appearance.Accent">@skill.Level</FluentBadge>
+                        <ul class="resume-list skills-list">
+                            @foreach (var keyword in skill.Keywords)
+                            {
+                                <li>@keyword</li>
+                            }
+                        </ul>
                     }
                 </FluentStack>
-
-                @if (skill.Keywords?.Count > 0)
-                {
-                    <ul class="resume-list skills-list">
-                        @foreach (var keyword in skill.Keywords)
-                        {
-                            <li>@keyword</li>
-                        }
-                    </ul>
-                }
-            </FluentStack>
-        }
-    </FluentStack>
+            }
+        </FluentStack>
+    </div>
     </FluentStack>
 }
 
