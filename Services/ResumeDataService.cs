@@ -1,18 +1,16 @@
+using System.Net.Http.Json;
 using System.Text.Json;
 using Compendium.Domain;
 
 namespace Compendium.Services;
 
-public sealed class ResumeDataService(IWebHostEnvironment environment)
+public sealed class ResumeDataService(HttpClient httpClient)
 {
+    private const string ResumePath = "data/resume.json";
+
     private static readonly JsonSerializerOptions SerializerOptions =
         new() { PropertyNameCaseInsensitive = true };
 
-    private readonly string _resumePath = Path.Combine(
-        environment.WebRootPath,
-        "data",
-        "resume.json"
-    );
     private Resume? _cachedResume;
 
     public async Task<Resume?> GetResumeAsync(CancellationToken cancellationToken = default)
@@ -22,17 +20,19 @@ public sealed class ResumeDataService(IWebHostEnvironment environment)
             return _cachedResume;
         }
 
-        if (!File.Exists(_resumePath))
+        try
+        {
+            _cachedResume = await httpClient.GetFromJsonAsync<Resume>(
+                ResumePath,
+                SerializerOptions,
+                cancellationToken
+            );
+        }
+        catch (HttpRequestException)
         {
             return null;
         }
 
-        await using var stream = File.OpenRead(_resumePath);
-        _cachedResume = await JsonSerializer.DeserializeAsync<Resume>(
-            stream,
-            SerializerOptions,
-            cancellationToken
-        );
         return _cachedResume;
     }
 }
