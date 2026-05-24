@@ -1,0 +1,539 @@
+{
+  "basics": {
+    "name": "Manoj Waikar",
+    "label": "Speaker at International Conferences, PacktPub Author, Technology modernization Architect, Senior Developer",
+    "picture": "",
+    "email": "manoj_w@yahoo.com",
+    "phone": "+49 1632856175",
+    "website": "http://mmwaikar.wordpress.com",
+    "summary": "25+ years of experience building micro-services, REST APIs, SPAs, thick clients (on JVM / .Net) using FP (F#, Scala, Clojure) & OO (Java, C#, JS) languages with NoSQL, Graph & Relational Databases. International experience in Germany (~2 years), USA (3+ years) and remaining in India.",
+    "location": {
+      "address": "Feldbergstraße 127",
+      "postalCode": "71134",
+      "city": "Aidlingen",
+      "countryCode": "DE",
+      "region": "Baden-Württemberg"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "manoj-waikar",
+        "url": "https://www.linkedin.com/in/manoj-waikar"
+      },
+      {
+        "network": "GitHub",
+        "username": "mmwaikar",
+        "url": "https://github.com/mmwaikar"
+      },
+      {
+        "network": "WordPress Blog",
+        "username": "mmwaikar",
+        "url": "https://mmwaikar.wordpress.com/"
+      },
+      {
+        "network": "Twitter",
+        "username": "mmwaikar",
+        "url": "https://twitter.com/mmwaikar"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "DKFZ (German Cancer Research Centre), Heidelberg, Germany",
+      "position": "Research Associate",
+      "website": "https://www.dkfz.de/",
+      "startDate": "2024-06-01",
+      "summary": "Cancer Core Europe (CCE) is a consortium of seven leading cancer centres of Europe. The project aims to bring together these centres using a Federated Data Explorer using DKFZ's Bridgehead software. The backend uses Blaze (written in Clojure) as the FHIR store.",
+      "highlights": [
+        "Manage Bridgehead installation at various centres",
+        "Create dedicated FHIR profiles",
+        "Create synthetic XML data generator in Rust",
+        "Contribute to Blaze development"
+      ]
+    },
+    {
+      "name": "Qumulus Technology Ltd., Pune, India",
+      "position": "Consultant",
+      "startDate": "2023-03-01",
+      "endDate": "2023-11-30",
+      "summary": "Build Customer Portal for ordering private cloud. The portal is a Vue.js Azure Static Web App, with REST / GraphQL APIs exposed using Microsoft's Data API Builder for Azure databases. EF Core code first migrations are used to generate the PostgreSQL database on Azure.",
+      "highlights": [
+        "Create domain model in C# on .Net core 6",
+        "Generate DB using EF code first migrations support",
+        "Use the C# FP language extensions library for using Option data type and other FP features",
+        "Use F# CSV / HTML / JSON type providers in Polyglot Notebooks to scrape websites / gather data from REST APIs of other cloud providers (like Hetzner & OVH)"
+      ]
+    },
+    {
+      "name": "Intercax Technologies Pvt. Ltd., Pune, India",
+      "position": "Operations Lead & Product Architect ",
+      "website": "https://intercax.com/",
+      "startDate": "2015-03-01",
+      "endDate": "2023-03-31",
+      "summary": "Syndeia (formerly, SLIM - Systems LIfecycle Management) is a software environment for integrated model-based systems engineering, connecting high-level architecture in SysML to PLM, CAD, databases and more.",
+      "highlights": [
+        "Write micro-services using the Lightbend Lagom framework (in Scala)",
+        "Use this API to create Graph visualizations using Cytoscape.js, D3.js & ES 2015",
+        "Write REST APIs for the cloud using Play framework",
+        "Consume these REST APIs in the core Java product",
+        "Use Cassandra for data storage and use Materialized Views for querying",
+        "Generate Python / Scala clients using Open API specification"
+      ]
+    },
+    {
+      "name": "Intelliheads Technology Pvt. Ltd., Pune, India",
+      "position": "Technical Project Manager",
+      "website": "http://www.intelliheads.com",
+      "startDate": "2013-10-01",
+      "endDate": "2014-12-01",
+      "summary": "Build and deliver the self service portal using AngularJS, Bootstrap for the frontend and WebAPI for the backend. Enhance ProxyClient - a parental control software which uses Komodia SDK to control access to Internet. The software contains a windows service which wraps the Komodia SDK and decides if a particular TCP/IP connection (to Internet) should be allowed. A small system tray application called Notify Icon lets the user know about the state of the windows service.",
+      "highlights": [
+        "Use Angular controllers, directives, resource service, http service and factories",
+        "Implemented REST services using Web API",
+        "Use Yeoman – Yo, Grunt and Bower to manage JS dependencies, scaffolding controllers, services etc.",
+        "Use Underscore.js for writing functional JS",
+        "Use EF code-first to interact with DB and migrations for agile database management",
+        "Implemented a build script using FAKE – F# Make"
+      ]
+    },
+    {
+      "name": "EkSource Technologies, Pune, India",
+      "position": "Consultant",
+      "website": "http://www.eksource.com/",
+      "startDate": "2013-02-01",
+      "endDate": "2013-07-31",
+      "summary": "ForMee (http://formee.com.au/) is a website for the community, where the registered users can post classifieds in different categories like Automotive, Real Estate etc. Keyword search and advanced search capabilities (for individual modules) are provided. Users can subscribe to the newsletter without being registered with the website.",
+      "highlights": [
+        "Architect, create domain model and use EF's code-first migrations for Agile database management",
+        "Use AutoMapper to convert domain objects to DTOs and bind DTOs to the view",
+        "Use Unity for Inversion of Control"
+      ]
+    },
+    {
+      "name": "The Most Group, Pune, India",
+      "position": "Technical Architect / Product Manager",
+      "website": "http://themostgroup.com/",
+      "startDate": "2012-03-01",
+      "endDate": "2012-12-01",
+      "summary": "MedBenefit offers a flexible, intuitive, user-friendly way for a Health Plan to define its unique benefits once as a “single source of truth” and use them for multiple customers and benefit plan designs, as well as push them to disparate systems using consistent, concurrent data feeds. These feeds support the claims processing, 270/1 benefit eligibility, web- & IVR-based member & provider servicing, and Plan helpdesk customer servicing systems.",
+      "highlights": [
+        "Recruitment / resource planning and task allocation",
+        "Frameworks / tool selection",
+        "Manage a team of 9 for product development in association with the on-site Solution Architect",
+        "Architect, design and develop a Silverlight RIA using Prism 4.1, Unity (for Dependency Injection), MVVM pattern etc.",
+        "Use Entity Framework 4.3.1 for Data Access",
+        "Setup Continuous Integration server using TeamCity"
+      ]
+    },
+    {
+      "name": "PJM Interconnection, Royersford, USA",
+      "position": "Consultant (through First-Tek Technologies)",
+      "website": "http://www.pjm.com/",
+      "startDate": "2009-11-01",
+      "endDate": "2011-01-14",
+      "summary": "SCED (Service Control Economic Dispatch) is a smart-client desktop application written in WPF, that displays graphs, statistics and information about the state of the power-grid controlled by PJM Interconnection for their control centers.",
+      "highlights": [
+        "Implemented presenters, view models, data access logic and data bindings for various screens",
+        "Implemented unit tests for the code using NUnit and Moq and checking code coverage using NCover",
+        "Built NHibernate mapping files as and when required",
+        "Used MassTransit for messaging"
+      ]
+    },
+    {
+      "name": "Redcats, New York, USA",
+      "position": "Engineer",
+      "website": "http://www.redcats.com/",
+      "startDate": "2008-09-01",
+      "endDate": "2009-10-31",
+      "summary": "Millena 2 is an attempt to introduce SOA architecture in the enterprise. All the future websites will use Millena 2 services, and current websites will be enhanced to use the same services. SOA will also eliminate the problem of divergent code bases by centralizing the core business logic in various WCF services.",
+      "highlights": [
+        "Implemented Product Details feature of the Catalog data provider service using WCF",
+        "Exposed the above service on TCP and REST (returning data in JSON format) endpoints",
+        "Did integration testing of the above service"
+      ]
+    },
+    {
+      "name": "Pitney Bowes, Danbury, USA",
+      "position": "Consultant (through Horizon International)",
+      "website": "http://www.pitneybowes.com/us",
+      "startDate": "2008-02-01",
+      "endDate": "2008-06-30",
+      "summary": "DPP Connector is a WinForms application, which connects DFWorks (a software written by Pitney Bowes), Prestige Scheduler (a third party scheduling software), and PI (Production Intelligence). It takes data from DFWorks database (on Oracle), and posts data in Prestige Scheduler (on SQL Server), and uses Socket communication to make Prestige API calls, to raise various Jobs to Prestige Scheduler. The application is architected using various Spring.Net components like IoC (for loose coupling), AOP and Log4Net (for logging) and NHibernate (for Data Access).",
+      "highlights": [
+        "Implemented DAOs for NHibernate and Ado.Net using Generics",
+        "Achieved loose coupling between components using Spring.Net IoC",
+        "Implemented logging using Spring.Net AOP and Log4Net",
+        "Implemented Transaction Management using Spring.Net AOP",
+        "Used XML configuration files for externalizing required data and configuring objects and their dependencies",
+        "Oracle 9i and SQL Server 2005 were the backend databases"
+      ]
+    },
+    {
+      "name": "JPMorgan Chase, Wilmington, USA",
+      "position": "Consultant (through Horizon International)",
+      "website": "http://www.jpmorganchase.com/",
+      "startDate": "2007-10-01",
+      "endDate": "2008-02-29",
+      "summary": "Estimate Central is a Project Estimation tool to be used by Project Managers and other stakeholders, to arrive at a good estimate (in dollar and man-months) of any new project being undertaken in Chase. The tool would allow various Blocks to perform and document, impact analysis of each requirement. The estimate is based on various factors like platform complexity, component complexity etc. The tool also allows dividing the effort among various supporting groups like BSAs, Testing, and Development. It's a web-based application built using Asp.Net 2.0 and .Net 2.0-technology stack and Oracle 10g as database.",
+      "highlights": [
+        "Architected the whole application to use a layered architecture in a DDD (Domain-driven design) fashion, by converting the datasets into POCO domain objects",
+        "Used Microsoft Enterprise Library 3.1 DAAB for data access",
+        "Master Pages were used for the common look and feel of the application",
+        "Used ObjectDataSource to bind the domain objects to the various controls on the Aspx pages",
+        "Used Calendar and ConfirmButton controls from the Asp.Net Ajax Control Toolkit",
+        "Used the Asp.Net 2.0 Login, GridView, MultiView and DetailsView controls heavily in various Aspx pages"
+      ]
+    },
+    {
+      "name": "SunGard Offshore Services, Pune, India",
+      "position": "Module Lead (Sungard Investran)",
+      "website": "http://www.sungard.com/",
+      "startDate": "2005-12-01",
+      "endDate": "2007-08-31",
+      "summary": "SunGard DataExchange is a secure, web-based document management service and document archive. The Bulk Upload utility will enable the users to upload large amount of files to the SunGard DX web site using a WCF service. Investran is a powerful and comprehensive system, which provides investment and partnership accounting, portfolio management, reporting and analysis, and investor servicing solutions for private equity and alternative assets investment organizations.",
+      "highlights": [
+        "Used Agile methodology for the estimation, and iterative development",
+        "Architected the application to follow the MVP (Model-View-Presenter) pattern to achieve a testable UI",
+        "Implemented a WCF Service to upload large number of files to the SunGard DataExchange web site",
+        "Designed and developed the iBatis.Net mapping files and the corresponding DAO classes in the Domain model",
+        "Used Generics (using .Net 2.0) extensively in various DAO classes",
+        "Wrote Unit Tests using VS Unit for the various DAO classes",
+        "Used Castle Windsor to achieve IOC"
+      ]
+    },
+    {
+      "name": "SunGard Offshore Services, Pune, India",
+      "position": "Senior Software Engineer (Sungard Trading Systems)",
+      "website": "http://www.sungard.com/",
+      "startDate": "2004-02-01",
+      "endDate": "2005-11-30",
+      "summary": "Panorama BackOffice uses stored procedures for the CRUD operations. DB Streamliner (written in C# and WinForms) is a code generator that generates stored procedures / Triggers for the three main database vendors namely Oracle, Sybase and SQL Server. It also features a wizard where a table can be modified and corresponding SPs be generated. The tool also included Consistency Checker (to do the directory comparison for the three vendors) and Dependency Checker (for ascertaining the dependencies of a SP on other SPs).",
+      "highlights": [
+        "Designed and developed the whole application that generates SPs / Triggers for SQL Server, Sybase and Oracle",
+        "Designed and developed UI components to create or modify a database table interactively",
+        "Wrote a custom parser for parsing the various table definition SQL files",
+        "Used Infragistics grid for easy manipulation of data"
+      ]
+    },
+    {
+      "name": "Fusion Technologies (now Synechron), Pune, India",
+      "position": "Senior Software Engineer",
+      "website": "http://www.synechron.com/",
+      "startDate": "2003-08-01",
+      "endDate": "2004-01-31",
+      "summary": "HyperFusion is a product that allows the user to look into the Stock market data provided by companies like HyperFeed. It uses HyperFeed APIs to connect to their servers and get static as well as Real Time data. The UI consisted of 8 complex screens which show Stock Market data in various views like a Grid view, Chart view etc. This data is updated online and always stays current.",
+      "highlights": [
+        "Designed and developed various screens (using Multi-threading) in C# and WinForms",
+        "Used multithreaded Xceed Grid to display real time data",
+        "Designed and developed wrappers (as assemblies in C#) for HyperFeed ActiveX EXEs",
+        "Designed and developed Excel RTD server component"
+      ]
+    },
+    {
+      "name": "HCL Technologies, Gurgaon, India",
+      "position": "Software Engineer",
+      "website": "http://www.hcltech.com/",
+      "startDate": "2002-05-01",
+      "endDate": "2003-05-31",
+      "summary": "Export Compliance Suite is a J2EE thin client application based on ASP model and comprises of services like ECE (Export Compliance Engine), DPE (Document Production Engine) and LCE (Landed Cost Engine). The GUI is built using JSP / Servlets, and the data transfer is done using XML APIs. Oracle 8.1.7 is being used as the database server. It is also integrated with other ERP packages like Oracle Apps 11i.",
+      "highlights": [
+        "Created the Usage Reporting module which maintains all the statistics with regard to the Service Usage by various subscribers",
+        "Developed a module to keep historical data in staging and used XML to transport staging data to production",
+        "Used SAX parsing to parse XML files",
+        "Developed a module for Private Data Screening (Corporate Compliance) while screening transactions through ECE, both from the UI and XML",
+        "Developed the Export Compliance Engine which includes complete life - cycle from design, development, testing and implementation using JSP / Servlets"
+      ]
+    },
+    {
+      "name": "HCL Technologies, Gurgaon, India",
+      "position": "Software Engineer",
+      "website": "http://www.hcltech.com/",
+      "startDate": "2000-08-01",
+      "endDate": "2002-04-30",
+      "summary": "EXE Technologies, with its powerful R&D and Professional Services group, is one of the biggest manufacturers of warehouse management software in the world. The system is highly parameterized, so with minimum efforts this can be implemented in any warehouse according to the needs of the warehouse.",
+      "highlights": [
+        "Developed various ActiveX controls for Reports Module and Cross-Dock Module",
+        "Wrote queries and stored procedures in SQL Server",
+        "Developed the Translation module (for Internationalization) in an ActiveX DLL",
+        "Made CAB files of the various controls and integrated them in ASP pages",
+        "Did the peer Code Review and Documentation",
+        "Performed Acceptance testing at the client site, Philadelphia, US, for a period of three months"
+      ]
+    },
+    {
+      "name": "Indus Software (now RSystems), Pune, India",
+      "position": "Programmer",
+      "website": "http://www.rsystems.com/",
+      "startDate": "1999-03-01",
+      "endDate": "2000-07-31",
+      "summary": "IBS (Integrated Business System) took care of the entire process involved in the disbursement of a loan starting from entering the details of the customer, deciding the credit worthiness of that customer, ascertaining whether IDFC has enough funds to give loan to the customer and then disbursement of the loan. The system also handled revalidating the loan amount in case the customer defaulted.",
+      "highlights": [
+        "Designed and coded different forms for CA & Commitment module and Resources module in VB 6",
+        "Wrote ActiveX DLLs containing general-purpose functions",
+        "Wrote Business Objects (as ActiveX DLLs) that were hosted under MTS",
+        "Designed reports using Crystal Reports 7.0",
+        "Wrote queries and Stored procedures in SQL Server"
+      ]
+    }
+  ],
+  "volunteer": [],
+  "education": [
+    {
+      "institution": "CDAC, ACTS",
+      "area": "Pune",
+      "studyType": "Diploma in Advanced Computing (Software Engineering)",
+      "startDate": "1998-07-01",
+      "endDate": "1999-01-31",
+      "gpa": "",
+      "courses": []
+    },
+    {
+      "institution": "Institute of Productivity and Management",
+      "area": "Meerut",
+      "studyType": "Post Graduate Diploma in Business Management (Marketing)",
+      "startDate": "1995-08-01",
+      "endDate": "1997-05-31",
+      "gpa": "",
+      "courses": []
+    },
+    {
+      "institution": "Lachoo Memorial College of Science and Technology",
+      "area": "Jodhpur",
+      "studyType": "B. Sc. (Computer Science)",
+      "startDate": "1992-07-01",
+      "endDate": "1995-05-31",
+      "gpa": "",
+      "courses": [
+        "Physics",
+        "Maths",
+        "Computers"
+      ]
+    }
+  ],
+  "awards": [],
+  "publications": [
+    {
+      "name": "Data Oriented Development with AngularJS",
+      "publisher": "Packt",
+      "releaseDate": "2015-04-01",
+      "url": "https://www.packtpub.com/product/data-oriented-development-with-angularjs/9781784398057",
+      "summary": "This book helps beginner-level AngularJS developers organize AngularJS applications by discussing important AngularJS concepts and best practices. If you are an experienced AngularJS developer but haven't written directives or haven't created custom HTML controls before, then this book is ideal for you."
+    },
+    {
+      "name": "Graph-Based Digital Blueprint for Model Based Engineering of Complex Systems",
+      "publisher": "INCOSE",
+      "releaseDate": "2017-07-15",
+      "url": "https://www.omgsysml.org/Graphs_MBE_INCOSE_IS_Bajaj-et-al.pdf",
+      "summary": "This paper presents a graph-based approach for realizing the digital blueprint, that provides the most accurate representation of the system by federating information from engineering models across multiple enterprise repositories."
+    },
+    {
+      "name": "MBSE++ Foundations for Extended Model-Based Systems Engineering Across System Lifecycle",
+      "publisher": "INCOSE",
+      "releaseDate": "2016-07-18",
+      "url": "https://www.omg.org/sysml/MBSE++%20Bajaj_INCOSE_IS-2016.pdf",
+      "summary": "This paper presents an approach for next-generation model-based systems engineering across the system lifecycle, labelled MBSE++."
+    }
+  ],
+  "skills": [
+    {
+      "name": "C#",
+      "level": "Expert",
+      "keywords": [
+        "REST APIs (Azure Functions, Asp.Net Web API)",
+        "Web (Asp.Net MVC, Asp.Net)",
+        "UI (Azure Static Web Apps, Blazor, WPF, Silverlight, WinForms)",
+        "ORM (EF Core Code First, NHibernate, iBatis.Net)",
+        "Dependency Injection (Spring.Net, Castle Windsor)",
+        "Automated Testing (NUnit, MS Unit, Moq)",
+        "AutoMapper"
+      ]
+    },
+    {
+      "name": "Scala",
+      "level": "Intermediate",
+      "keywords": [
+        "Play Framework",
+        "Micro-services (using Lagom)",
+        "FP (Cats)",
+        "Automated Testing (ScalaTest, JUnit)"
+      ]
+    },
+    {
+      "name": "Web Development",
+      "level": "Advanced",
+      "keywords": [
+        "JavaScript",
+        "AngularJS",
+        "Underscore.js",
+        "jQuery",
+        "Yeoman (Yo, Grunt, Bower)",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      "name": "RDBMS",
+      "level": "Expert",
+      "keywords": [
+        "PostgreSql",
+        "SQL Server",
+        "Oracle"
+      ]
+    },
+    {
+      "name": "NoSQL",
+      "level": "Intermediate",
+      "keywords": [
+        "JanusGraph, Neo4j"
+      ]
+    },
+    {
+      "name": "Design Patterns and Principles",
+      "level": "Intermediate",
+      "keywords": [
+        "GoF Design Patterns (Template Method, Decorator, Facade, Factory Method, Abstract Factory etc.)",
+        "SRP (Single Responsibility Principle)",
+        "OCP (Open Closed Principle)",
+        "MVC, MVVM, MVU"
+      ]
+    },
+    {
+      "name": "Agile",
+      "level": "Intermediate",
+      "keywords": [
+        "Planning Poker",
+        "CI - Continuous Integration (Docker, GitHub Actions, TeamCity)"
+      ]
+    },
+    {
+      "name": "VCS",
+      "level": "Expert",
+      "keywords": [
+        "Git",
+        "Git Flow",
+        "SVN",
+        "Perforce",
+        "TFS"
+      ]
+    },
+    {
+      "name": "Others",
+      "level": "Expert",
+      "keywords": [
+        "VB 6",
+        "COM",
+        "DCOM",
+        "MTS"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Hindi",
+      "fluency": "Native Speaker"
+    },
+    {
+      "language": "Marathi",
+      "fluency": "Native Speaker"
+    },
+    {
+      "language": "German",
+      "fluency": "Beginner (A1)"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Music",
+      "keywords": [
+        "Singing",
+        "Guitar"
+      ]
+    },
+    {
+      "name": "Reading",
+      "keywords": [
+        "Richard Bach",
+        "Paulo Coelho",
+        "Dr. Brian Weiss"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "github-scraper",
+      "description": "Scrape a GitHub repo for stars, forks, watching, releases, used and contributors stats (in Rust)",
+      "url": "https://github.com/mmwaikar/github-scraper",
+      "highlights": [
+        "Rust FFI"
+      ]
+    },    
+    {
+      "name": "GitHubStatsComparer",
+      "description": "Show GitHub stats as charts in a TUI app using Spectre.Console (use C# - Rust interop by using github-scraper)",
+      "url": "https://github.com/mmwaikar/GitHubStatsComparer",
+      "highlights": [
+        "C# - Rust Interop",
+        "Spectre.Console"
+      ]
+    },
+    {
+      "name": "github-stats-comparer",
+      "description": "Show GitHub stats as charts in a TUI app using Textual (use Python - Rust interop by using github-scraper). The same app also runs in the browser.",
+      "url": "https://github.com/mmwaikar/github-stats-comparer",
+      "highlights": [
+        "Python - Rust Interop",
+        "Textual (for TUI)"
+      ]
+    },
+    {
+      "name": "cce-fhir-gen",
+      "description": "Synthetic XML data generator for CCE FHIR profiles (in Rust)",
+      "url": "https://github.com/samply/cce-fhir-gen/tree/develop",
+      "highlights": [
+        "Rust",
+        "FHIR"
+      ]
+    },
+    {
+      "name": "sycamore-wordle",
+      "description": "Browser based Wordle game using Sycamore",
+      "url": "https://github.com/mmwaikar/sycamore-wordle",
+      "highlights": [
+        "Rust",
+        "Sycamore"
+      ]
+    },
+    {
+      "name": "leptos-wordle",
+      "description": "Browser based Wordle game using Leptos",
+      "url": "https://github.com/mmwaikar/leptos-wordle",
+      "highlights": [
+        "Rust",
+        "Leptos"
+      ]
+    },
+    {
+      "name": "WhyFSharp",
+      "description": "VS Code Polyglot Notebooks (in F#) explaining why one should prefer F# over C#",
+      "url": "https://github.com/mmwaikar/whyfsharp",
+      "highlights": [
+        "F#",
+        "VS Code Polyglot Notebooks"
+      ]
+    },
+    {
+      "name": "SqlForCql",
+      "description": "SQL like capabilities for Apache Cassandra.",
+      "url": "https://github.com/mmwaikar/SqlForCql",
+      "highlights": [
+        "Clojure",
+        "Cassandra"
+      ]
+    }
+  ],
+  "references": []
+}

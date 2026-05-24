@@ -1,0 +1,87 @@
+@page "/experience/by-company"
+@rendermode InteractiveServer
+@using MudBlazor
+@inject IJSRuntime JSRuntime
+@inject ResumeDataService ResumeDataService
+
+<PageTitle>Experience By Company</PageTitle>
+
+@if (resume is null)
+{
+    <FluentStack Class="resume-page" Orientation="Microsoft.FluentUI.AspNetCore.Components.Orientation.Vertical">
+        <FluentStack Class="resume-card" Orientation="Microsoft.FluentUI.AspNetCore.Components.Orientation.Vertical">
+            <FluentLabel>Loading company experience...</FluentLabel>
+        </FluentStack>
+    </FluentStack>
+}
+else
+{
+    <FluentStack Class="resume-page" Orientation="Microsoft.FluentUI.AspNetCore.Components.Orientation.Vertical">
+        <FluentStack Class="resume-heading" Orientation="Microsoft.FluentUI.AspNetCore.Components.Orientation.Vertical">
+            <FluentLabel Class="resume-eyebrow">Experience</FluentLabel>
+            <h1>By Company</h1>
+            <FluentLabel Class="resume-summary company-summary">Company experience is grouped across multiple roles and
+                displayed as total months in a MudBlazor bar chart.</FluentLabel>
+            </FluentStack>
+
+            <FluentStack Class="resume-card" Orientation="Microsoft.FluentUI.AspNetCore.Components.Orientation.Vertical">
+                @if (companySummaries.Count == 0)
+                {
+                    <FluentLabel>No work history was found in the resume data.</FluentLabel>
+                }
+                else
+                {
+                    <div class="company-chart-host" @ref="chartContainer">
+                        <MudChart ChartType="ChartType.Bar" Class="company-chart" ChartSeries="companySeries"
+                                  ChartLabels="companyLabels" ChartOptions="chartOptions" Width="100%" Height="450px" />
+                    </div>
+                }
+            </FluentStack>
+        </FluentStack>
+    }
+
+@code {
+    private static readonly string[] CompanyBarPalette = ["#0F6CBD", "#DC5F00", "#198754", "#8E44AD", "#C0392B", "#0E7490",
+"#D97706", "#4F46E5", "#047857", "#B91C1C", "#7C3AED", "#1D4ED8"];
+
+    private Resume? resume;
+    private IReadOnlyList<CompanyExperienceSummary> companySummaries = [];
+    private string[] companyLabels = [];
+    private List<ChartSeries<double>> companySeries = [];
+    private ElementReference chartContainer;
+    private readonly BarChartOptions chartOptions = new()
+    {
+        YAxisTitle = "Months",
+        XAxisTitle = "Companies",
+        XAxisLabelRotation = 35,
+        MaxNumYAxisTicks = 6,
+        ShowLegend = false,
+        FixedBarWidth = 24,
+        ChartPalette = ["#0F6CBD"]
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        resume = await ResumeDataService.GetResumeAsync();
+        companySummaries = ExperienceAnalytics.GroupByCompany(resume?.Work);
+        companyLabels = companySummaries.Select(static company => company.CompanyName).ToArray();
+        companySeries =
+        [
+            new ChartSeries<double>
+            {
+                Name = "Experience",
+                Data = companySummaries.Select(static company => (double)company.TotalMonths).ToArray()
+            }
+        ];
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (companySummaries.Count == 0)
+        {
+            return;
+        }
+
+        await JSRuntime.InvokeVoidAsync("companyBarChart.initialize", chartContainer, CompanyBarPalette);
+    }
+}

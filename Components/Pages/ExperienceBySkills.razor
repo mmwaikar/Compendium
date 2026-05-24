@@ -1,0 +1,111 @@
+@page "/experience/by-skills"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+@inject ResumeDataService ResumeDataService
+
+<PageTitle>Experience By Skills</PageTitle>
+
+@if (resume is null)
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+            <FluentLabel>Loading skills experience...</FluentLabel>
+        </FluentStack>
+    </FluentStack>
+}
+else
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-heading" Orientation="Orientation.Vertical">
+            <FluentLabel Class="resume-eyebrow">Experience</FluentLabel>
+            <h1>By Skills</h1>
+            <FluentLabel Class="resume-summary">Skills are shown as a concentric graph. Select the Skills root or any skill
+                node to collapse or expand related keywords.</FluentLabel>
+            </FluentStack>
+
+            <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+                @if (skills.Count == 0)
+                {
+                    <FluentLabel>No skills were found in the resume data.</FluentLabel>
+                }
+                else
+                {
+                    <div class="country-graph-host">
+                        <div class="country-graph-canvas" @ref="graphContainer"></div>
+                    </div>
+                }
+            </FluentStack>
+        </FluentStack>
+    }
+
+@code {
+    private Resume? resume;
+    private IReadOnlyList<Skill> skills = [];
+    private ElementReference graphContainer;
+    private bool graphInitialized;
+
+    protected override async Task OnInitializedAsync()
+    {
+        resume = await ResumeDataService.GetResumeAsync();
+        skills = (resume?.Skills ?? [])
+            .Where(static skill => !string.IsNullOrWhiteSpace(skill.Name))
+            .OrderBy(static skill => skill.Name)
+            .ToArray();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (graphInitialized || skills.Count == 0)
+        {
+            return;
+        }
+
+        graphInitialized = true;
+        await JSRuntime.InvokeVoidAsync("skillsGraph.initialize", graphContainer, BuildGraphModel());
+    }
+
+    private SkillsGraphModel BuildGraphModel()
+    {
+        var nodes = new List<SkillsGraphNode>
+        {
+            new("skills-root", "root", "Skills", "Skills")
+        };
+
+        var edges = new List<SkillsGraphEdge>();
+
+        for (var skillIndex = 0; skillIndex < skills.Count; skillIndex++)
+        {
+            var skill = skills[skillIndex];
+            var skillName = skill.Name!.Trim();
+            var skillId = $"skill-{skillIndex}";
+
+            nodes.Add(new SkillsGraphNode(skillId, "skill", skillName, skillName));
+            edges.Add(new SkillsGraphEdge($"edge-root-skill-{skillIndex}", "skills-root", skillId));
+
+            var keywords = (skill.Keywords ?? [])
+                .Where(static keyword => !string.IsNullOrWhiteSpace(keyword))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(static keyword => keyword)
+                .ToArray();
+
+            for (var keywordIndex = 0; keywordIndex < keywords.Length; keywordIndex++)
+            {
+                var keyword = keywords[keywordIndex].Trim();
+                var keywordId = $"{skillId}-keyword-{keywordIndex}";
+                nodes.Add(new SkillsGraphNode(keywordId, "keyword", keyword, keyword));
+                edges.Add(new SkillsGraphEdge($"edge-{skillIndex}-{keywordIndex}", skillId, keywordId));
+            }
+        }
+
+        return new SkillsGraphModel(nodes, edges);
+    }
+
+    private sealed record SkillsGraphModel(
+        IReadOnlyList<SkillsGraphNode> Nodes,
+        IReadOnlyList<SkillsGraphEdge> Edges
+    );
+
+    private sealed record SkillsGraphNode(string Id, string Type, string BaseLabel, string DetailLabel);
+
+    private sealed record SkillsGraphEdge(string Id, string Source, string Target);
+}

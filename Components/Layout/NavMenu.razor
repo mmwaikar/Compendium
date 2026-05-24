@@ -1,0 +1,33 @@
+﻿@rendermode InteractiveServer
+
+<div class="navmenu">
+    <input type="checkbox" title="Menu expand/collapse toggle" id="navmenu-toggle" class="navmenu-icon" />
+    <label for="navmenu-toggle" class="navmenu-icon">
+        <FluentIcon Value="@(new Icons.Regular.Size20.Navigation())" Color="Color.Fill" />
+    </label>
+    <nav class="sitenav" aria-labelledby="main-menu">
+        <FluentNavMenu Id="main-menu" Collapsible="true" Width="250" Title="Navigation menu" @bind-Expanded="expanded"
+                       CustomToggle="true">
+            <FluentNavLink Href="/" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Person())"
+                           IconColor="Color.Accent">Profile</FluentNavLink>
+            <FluentNavGroup Title="Experience" Href="experience" Match="NavLinkMatch.Prefix"
+                            Icon="@(new Icons.Regular.Size20.Briefcase())" IconColor="Color.Accent"
+                            @bind-Expanded="experienceExpanded">
+                <ChildContent>
+                    <FluentNavLink Href="experience/by-company">By Company</FluentNavLink>
+                    <FluentNavLink Href="experience/by-country">By Country</FluentNavLink>
+                    <FluentNavLink Href="experience/by-skills">By Skills</FluentNavLink>
+                </ChildContent>
+            </FluentNavGroup>
+            <FluentNavLink Href="skills" Icon="@(new Icons.Regular.Size20.CodeBlock())" IconColor="Color.Accent">Skills
+            </FluentNavLink>
+            <FluentNavLink Href="projects" Icon="@(new Icons.Regular.Size20.ClipboardTask())" IconColor="Color.Accent">
+                Projects</FluentNavLink>
+            </FluentNavMenu>
+        </nav>
+    </div>
+
+@code {
+    private bool expanded = true;
+    private bool experienceExpanded = true;
+}

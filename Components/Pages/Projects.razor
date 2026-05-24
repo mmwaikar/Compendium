@@ -1,0 +1,76 @@
+@page "/projects"
+@inject ResumeDataService ResumeDataService
+
+<PageTitle>Projects</PageTitle>
+
+@if (resume is null)
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+            <FluentLabel>Loading projects...</FluentLabel>
+        </FluentStack>
+    </FluentStack>
+}
+else
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-heading" Orientation="Orientation.Vertical">
+            <FluentLabel Class="resume-eyebrow">Projects</FluentLabel>
+            <h1>Selected works</h1>
+            <FluentLabel Class="resume-summary">GitHub code samples.</FluentLabel>
+        </FluentStack>
+
+        @if (resume.Projects?.Count > 0)
+        {
+            <div class="resume-section-grid">
+                @foreach (var project in resume.Projects)
+                {
+                    <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+                        <FluentStack Class="timeline-header" Orientation="Orientation.Horizontal">
+                            @if (!string.IsNullOrWhiteSpace(project.Url))
+                            {
+                                <h4><a href="@project.Url" target="_blank" rel="noreferrer">@project.Name</a></h4>
+                            }
+                            else
+                            {
+                                <h4>@project.Name</h4>
+                            }
+
+                            @if (project.Highlights?.Count > 0)
+                            {
+                                @foreach (var highlight in project.Highlights)
+                                {
+                                    <FluentBadge Appearance="Appearance.Neutral">@highlight</FluentBadge>
+                                }
+                            }
+                            else
+                            {
+                                <FluentBadge Appearance="Appearance.Neutral">No highlights</FluentBadge>
+                            }
+                        </FluentStack>
+
+                        @if (!string.IsNullOrWhiteSpace(project.Description))
+                        {
+                            <FluentLabel>@project.Description</FluentLabel>
+                        }
+                    </FluentStack>
+                }
+            </div>
+        }
+        else
+        {
+            <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+                <FluentLabel>No projects found in resume.json.</FluentLabel>
+            </FluentStack>
+        }
+    </FluentStack>
+}
+
+@code {
+    private Resume? resume;
+
+    protected override async Task OnInitializedAsync()
+    {
+        resume = await ResumeDataService.GetResumeAsync();
+    }
+}

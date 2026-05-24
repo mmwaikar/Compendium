@@ -1,0 +1,115 @@
+@page "/experience/by-country"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+@inject ResumeDataService ResumeDataService
+
+<PageTitle>Experience By Country</PageTitle>
+
+@if (resume is null)
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+            <FluentLabel>Loading country experience...</FluentLabel>
+        </FluentStack>
+    </FluentStack>
+}
+else
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-heading" Orientation="Orientation.Vertical">
+            <FluentLabel Class="resume-eyebrow">Experience</FluentLabel>
+            <h1>By Country</h1>
+            <FluentLabel Class="resume-summary country-summary">Countries are shown as the root tree with company nodes
+                beneath them. Select the Countries node or any country node to collapse or expand its children.
+            </FluentLabel>
+        </FluentStack>
+
+        <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+            @if (countrySummaries.Count == 0)
+            {
+                <FluentLabel>No work history was found in the resume data.</FluentLabel>
+            }
+            else
+            {
+                <div class="country-graph-host">
+                    <div class="country-graph-canvas" @ref="graphContainer"></div>
+                </div>
+            }
+        </FluentStack>
+    </FluentStack>
+}
+
+@code {
+    private Resume? resume;
+    private IReadOnlyList<CountryExperienceSummary> countrySummaries = [];
+    private ElementReference graphContainer;
+    private bool graphInitialized;
+
+    protected override async Task OnInitializedAsync()
+    {
+        resume = await ResumeDataService.GetResumeAsync();
+        countrySummaries = ExperienceAnalytics.GroupByCountry(resume?.Work);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (graphInitialized || countrySummaries.Count == 0)
+        {
+            return;
+        }
+
+        graphInitialized = true;
+        await JSRuntime.InvokeVoidAsync("countryGraph.initialize", graphContainer, BuildGraphModel());
+    }
+
+    private CountryGraphModel BuildGraphModel()
+    {
+        var nodes = new List<CountryGraphNode>
+        {
+            new("countries-root", "root", "Countries", "Countries")
+        };
+
+        var edges = new List<CountryGraphEdge>();
+
+        for (var countryIndex = 0; countryIndex < countrySummaries.Count; countryIndex++)
+        {
+            var country = countrySummaries[countryIndex];
+            var countryId = $"country-{countryIndex}";
+            nodes.Add(
+                new CountryGraphNode(
+                    countryId,
+                    "country",
+                    country.CountryName,
+                    country.CountryName
+                )
+            );
+            edges.Add(new CountryGraphEdge($"edge-root-{countryIndex}", "countries-root", countryId));
+
+            for (var companyIndex = 0; companyIndex < country.Companies.Count; companyIndex++)
+            {
+                var company = country.Companies[companyIndex];
+                var companyId = $"{countryId}-company-{companyIndex}";
+                nodes.Add(
+                    new CountryGraphNode(
+                        companyId,
+                        "company",
+                        company.CompanyName,
+                        company.CompanyName
+                    )
+                );
+                edges.Add(new CountryGraphEdge($"edge-{countryIndex}-{companyIndex}", countryId, companyId));
+            }
+        }
+
+        return new CountryGraphModel(nodes, edges);
+    }
+
+    private sealed record CountryGraphModel(
+        IReadOnlyList<CountryGraphNode> Nodes,
+        IReadOnlyList<CountryGraphEdge> Edges
+    );
+
+    private sealed record CountryGraphNode(string Id, string Type, string BaseLabel, string DetailLabel);
+
+    private sealed record CountryGraphEdge(string Id, string Source, string Target);
+}

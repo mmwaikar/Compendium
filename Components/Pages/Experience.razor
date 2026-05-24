@@ -1,0 +1,88 @@
+@page "/experience"
+@inject ResumeDataService ResumeDataService
+
+<PageTitle>Experience</PageTitle>
+
+@if (resume is null)
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+            <FluentLabel>Loading experience...</FluentLabel>
+        </FluentStack>
+    </FluentStack>
+}
+else
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-heading" Orientation="Orientation.Vertical">
+            <FluentLabel Class="resume-eyebrow">Experience</FluentLabel>
+            <h1>Professional history</h1>
+            <FluentLabel Class="resume-summary">A chronological view of roles, companies, and core responsibilities.
+            </FluentLabel>
+        </FluentStack>
+
+        <FluentAccordion Class="experience-accordion" ExpandMode="AccordionExpandMode.Multi">
+            @foreach (var work in resume.Work ?? [])
+            {
+                <FluentAccordionItem Class="experience-item">
+                    <HeadingTemplate>
+                        <FluentStack Class="experience-title-block" Orientation="Orientation.Vertical" Width="100%">
+                            <h3 class="experience-position">@work.Position</h3>
+                            <FluentStack Class="experience-meta-row" Orientation="Orientation.Horizontal">
+                                <strong class="experience-company-text" title="@work.Name">@work.Name</strong>
+                                <FluentBadge Class="experience-date" Appearance="Appearance.Accent">
+                                    @FormatPeriod(work.StartDate, work.EndDate)</FluentBadge>
+                                </FluentStack>
+                            </FluentStack>
+                        </HeadingTemplate>
+
+                        <ChildContent>
+                            <FluentStack Class="experience-content" Orientation="Orientation.Vertical">
+                                @if (!string.IsNullOrWhiteSpace(work.Summary))
+                                {
+                                    <FluentLabel>@work.Summary</FluentLabel>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(work.Website))
+                                {
+                                    <FluentLabel><a href="@work.Website" target="_blank" rel="noreferrer">Visit company site</a>
+                                    </FluentLabel>
+                                }
+
+                                @if (work.Highlights?.Count > 0)
+                                {
+                                    <ul class="resume-list">
+                                        @foreach (var highlight in work.Highlights)
+                                        {
+                                            <li>@highlight</li>
+                                        }
+                                    </ul>
+                                }
+                            </FluentStack>
+                        </ChildContent>
+                    </FluentAccordionItem>
+                }
+            </FluentAccordion>
+        </FluentStack>
+    }
+
+@code {
+    private Resume? resume;
+
+    protected override async Task OnInitializedAsync()
+    {
+        resume = await ResumeDataService.GetResumeAsync();
+    }
+
+    private static string FormatDate(string? value)
+    {
+        return DateOnly.TryParse(value, out var date) ? date.ToString("MMM, yyyy") : value ?? string.Empty;
+    }
+
+    private static string FormatPeriod(string? startDate, string? endDate)
+    {
+        var start = FormatDate(startDate);
+        var end = string.IsNullOrWhiteSpace(endDate) ? "Present" : FormatDate(endDate);
+        return string.IsNullOrWhiteSpace(start) ? end : $"{start} - {end}";
+    }
+}

@@ -1,0 +1,168 @@
+﻿@page "/"
+@page "/profile"
+@using Microsoft.FluentUI.AspNetCore.Components
+@inject ResumeDataService ResumeDataService
+
+<PageTitle>Profile</PageTitle>
+
+@if (resume is null)
+{
+	<FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+		<FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+			<FluentLabel>Loading profile...</FluentLabel>
+		</FluentStack>
+	</FluentStack>
+}
+else
+{
+	<FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+		<div class="resume-hero">
+			<FluentStack Orientation="Orientation.Vertical">
+				<FluentLabel Class="resume-eyebrow">Profile</FluentLabel>
+				<h1>@resume.Basics?.Name</h1>
+				@if (!string.IsNullOrWhiteSpace(resume.Basics?.Label))
+				{
+					<div class="hero-labels">
+						@foreach (var label in SplitCommaSeparatedValues(resume.Basics.Label).Select(static (value, index) =>
+					new { value, index }))
+						{
+							<FluentLabel Class=@($"resume-pill {(label.index % 2 == 0 ? "resume-pill-accent" :
+												"resume-pill-success")}")>@label.value</FluentLabel>
+						}
+					</div>
+				}
+			</FluentStack>
+			<FluentStack Class="resume-meta" Orientation="Orientation.Vertical">
+				@if (!string.IsNullOrWhiteSpace(resume.Basics?.Email))
+				{
+					<a href="mailto:@resume.Basics.Email">@resume.Basics.Email</a>
+				}
+				@if (!string.IsNullOrWhiteSpace(resume.Basics?.Phone))
+				{
+					<span>@resume.Basics.Phone</span>
+				}
+				@if (resume.Basics?.Location is not null)
+				{
+					<span>@FormatLocation(resume.Basics.Location)</span>
+				}
+			</FluentStack>
+			@if (!string.IsNullOrWhiteSpace(resume.Basics?.Summary))
+			{
+				<p class="resume-summary">@resume.Basics.Summary</p>
+			}
+		</div>
+
+		@if (resume.Education?.Count > 0 || resume.Publications?.Count > 0)
+		{
+			<div class="resume-section-grid equal-height-row">
+				<FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+					<h2>Education</h2>
+					@if (resume.Education?.Count > 0)
+					{
+						<ul class="resume-list">
+							@foreach (var education in resume.Education)
+							{
+								<li>
+									<strong>@education.StudyType</strong>
+									<FluentLabel>@education.Institution, @education.Area (@FormatPeriod(education.StartDate, education.EndDate))</FluentLabel>
+								</li>
+							}
+						</ul>
+					}
+				</FluentStack>
+
+				<FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+					<h2>Publications</h2>
+					<ul class="resume-list">
+						@foreach (var publication in resume.Publications ?? [])
+						{
+							<li>
+								@if (!string.IsNullOrWhiteSpace(publication.Url))
+								{
+									<a href="@publication.Url" target="_blank" rel="noreferrer">@publication.Name</a>
+								}
+								else
+								{
+									<strong>@publication.Name</strong>
+								}
+								<FluentLabel>@publication.Publisher (@FormatDate(publication.ReleaseDate))</FluentLabel>
+							</li>
+						}
+					</ul>
+				</FluentStack>
+			</div>
+		}
+
+		@if (resume.Basics?.Profiles?.Count > 0 || resume.Languages?.Count > 0)
+		{
+			<div class="resume-section-grid equal-height-row">
+				<FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+					<h2>Network</h2>
+					@if (resume.Basics?.Profiles?.Count > 0)
+					{
+						<ul class="resume-list profiles-list">
+							@foreach (var profile in resume.Basics.Profiles)
+							{
+								<li>
+									<a href="@profile.Url" target="_blank" rel="noreferrer">@profile.Network</a>
+								</li>
+							}
+						</ul>
+					}
+				</FluentStack>
+
+				<FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+					<h2>Languages</h2>
+					<ul class="resume-list skills-list">
+						@foreach (var language in resume.Languages ?? [])
+						{
+							<li>
+								<strong>@language.LanguageName</strong>
+								<FluentBadge Appearance="Appearance.Accent">@language.Fluency</FluentBadge>
+							</li>
+						}
+					</ul>
+				</FluentStack>
+			</div>
+		}
+	</FluentStack>
+}
+
+@code {
+	private Resume? resume;
+
+	protected override async Task OnInitializedAsync()
+	{
+		resume = await ResumeDataService.GetResumeAsync();
+	}
+
+	private static string FormatDate(string? value)
+	{
+		return DateOnly.TryParse(value, out var date) ? date.ToString("MMMM yyyy") : value ?? string.Empty;
+	}
+
+	private static string FormatLocation(Location location)
+	{
+		return string.Join(", ", new[] { location.City, location.Region, location.CountryCode }.Where(static part => !string.IsNullOrWhiteSpace(part)));
+	}
+
+	private static string FormatPeriod(string? startDate, string? endDate)
+	{
+		var start = FormatDate(startDate);
+		var end = string.IsNullOrWhiteSpace(endDate) ? "Present" : FormatDate(endDate);
+		return string.IsNullOrWhiteSpace(start) ? end : $"{start} - {end}";
+	}
+
+	private static IReadOnlyList<string> SplitCommaSeparatedValues(string? value)
+	{
+		if (string.IsNullOrWhiteSpace(value))
+		{
+			return [];
+		}
+
+		return value
+			.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+			.Distinct(StringComparer.OrdinalIgnoreCase)
+			.ToArray();
+	}
+}
