@@ -2,10 +2,32 @@
 
 body {
     --body-font: "Segoe UI Variable", "Segoe UI", sans-serif;
+    --brand-500: #1f8cb8;
+    --brand-600: #0f79a5;
+    --brand-700: #095f86;
+    --brand-200: #9fd8ec;
+    --brand-150: #b7e2f1;
+    --brand-100: #d3eef8;
+    --brand-050: #ecf8fd;
+    --accent-fill-rest: var(--brand-500);
+    --accent-fill-hover: var(--brand-600);
+    --accent-fill-active: var(--brand-700);
+    --accent-foreground-rest: #ffffff;
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
     line-height: var(--type-ramp-base-line-height);
     margin: 0;
+}
+
+.site-header {
+    background: linear-gradient(120deg, #0b6088 0%, var(--brand-500) 52%, #17a3d6 100%);
+    color: #ffffff;
+    border-bottom: 1px solid #084e6f;
+    box-shadow: 0 10px 24px rgba(9, 95, 134, 0.32);
+}
+
+.site-header * {
+    color: inherit;
 }
 
 .navmenu-icon {
@@ -43,8 +65,8 @@ body {
 .resume-heading {
     padding: 1.5rem;
     border-radius: 1rem;
-    background: linear-gradient(135deg, #f4f7fb 0%, #ffffff 100%);
-    border: 1px solid #d9e2f2;
+    background: linear-gradient(135deg, var(--brand-050) 0%, #ffffff 100%);
+    border: 1px solid var(--brand-150);
     margin-bottom: 1.5rem;
 }
 
@@ -62,7 +84,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.8rem;
-    color: #46607a;
+    color: var(--brand-700);
     margin: 0 0 0.5rem;
 }
 
@@ -70,7 +92,7 @@ body {
     font-size: 1.2rem;
     font-weight: 600;
     margin: 0.25rem 0 0.75rem;
-    color: #214160;
+    color: var(--brand-700);
 }
 
 .hero-labels {
@@ -124,7 +146,7 @@ body {
 .resume-card {
     padding: 1.25rem;
     border-radius: 1rem;
-    border: 1px solid #d8dfeb;
+    border: 1px solid var(--brand-150);
     background: #fff;
     box-shadow: 0 10px 30px rgba(28, 54, 86, 0.06);
 }
@@ -160,23 +182,23 @@ body {
     display: inline-flex;
     align-items: center;
     border-radius: 999px;
-    background: #e7f0fb;
-    color: #163b63;
+    background: var(--brand-100);
+    color: var(--brand-700);
     padding: 0.35rem 0.75rem;
     font-size: 0.9rem;
     white-space: nowrap;
 }
 
 .resume-pill-accent {
-    background: #e7f0fb;
-    color: #163b63;
-    border: 1px solid #cfe0f6;
+    background: var(--brand-100);
+    color: var(--brand-700);
+    border: 1px solid var(--brand-200);
 }
 
 .resume-pill-success {
-    background: #e6f5ec;
-    color: #175533;
-    border: 1px solid #c8e8d5;
+    background: #c3e9f7;
+    color: #0b5573;
+    border: 1px solid #97d8ee;
 }
 
 .timeline {
@@ -207,7 +229,7 @@ body {
     width: 100%;
     margin-bottom: 0.75rem;
     box-sizing: border-box;
-    border: 1px solid #d8dfeb;
+    border: 1px solid var(--brand-150);
     border-radius: 1rem;
     background: #fff;
     box-shadow: 0 10px 30px rgba(28, 54, 86, 0.06);
@@ -235,7 +257,7 @@ body {
     display: inline-block;
     font-size: 0.98rem;
     font-weight: 600;
-    color: #214160;
+    color: var(--brand-700);
     line-height: 1.3;
     white-space: nowrap;
 }
@@ -253,18 +275,18 @@ body {
 }
 
 .resume-page a {
-    color: #0f6cbd;
+    color: var(--brand-500);
     text-decoration: underline;
     text-underline-offset: 0.12em;
     font-weight: 600;
 }
 
 .resume-page a:hover {
-    color: #0b5aa0;
+    color: var(--brand-700);
 }
 
 .resume-page a:focus-visible {
-    outline: 2px solid #0f6cbd;
+    outline: 2px solid var(--brand-500);
     outline-offset: 2px;
     border-radius: 0.2rem;
 }
@@ -282,10 +304,10 @@ body {
     min-height: 22rem;
     height: clamp(22rem, 58vh, 34rem);
     border-radius: 1rem;
-    border: 1px solid #d8dfeb;
+    border: 1px solid var(--brand-150);
     background:
-        radial-gradient(circle at top right, rgba(15, 108, 189, 0.08), transparent 26%),
-        linear-gradient(180deg, #fcfdff 0%, #f7faff 100%);
+        radial-gradient(circle at top right, rgba(31, 140, 184, 0.22), transparent 32%),
+        linear-gradient(180deg, #fbfeff 0%, var(--brand-050) 100%);
     overflow: hidden;
 }
 
@@ -306,8 +328,8 @@ body {
     margin-bottom: 0;
     padding: 0.35rem 0.7rem;
     border-radius: 0.2rem;
-    background: #f2f6fb;
-    border: 1px solid #d5dfec;
+    background: var(--brand-100);
+    border: 1px solid var(--brand-200);
 }
 
 .manage {
@@ -400,7 +422,7 @@ footer a:hover {
 }
 
 .loading-progress circle:last-child {
-    stroke: #1b6ec2;
+    stroke: var(--brand-500);
     stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
     transition: stroke-dasharray 0.05s ease-in-out;
 }
