@@ -343,6 +343,11 @@ body {
     border: 1px solid var(--brand-200);
 }
 
+.heart {
+    color: #e81e1e;
+    margin: 0 0.25rem;
+}
+
 .manage {
     width: 100dvw;
 }
@@ -355,7 +360,7 @@ footer {
 }
 
 footer a {
-    color: var(--neutral-foreground-rest);
+    color: #1f8cb8;
     text-decoration: none;
 }
 

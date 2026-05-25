@@ -1,7 +1,7 @@
 {
   "basics": {
     "name": "Manoj Waikar",
-    "label": "Speaker at International Conferences, PacktPub Author, Technology modernization Architect, Senior Developer",
+    "label": "Speaker at International Conferences, PacktPub Author, Technology modernization Architect, Senior FullStack Developer",
     "picture": "",
     "email": "manoj_w@yahoo.com",
     "phone": "+49 1632856175",
@@ -356,6 +356,14 @@
         "Micro-services (using Lagom)",
         "FP (Cats)",
         "Automated Testing (ScalaTest, JUnit)"
+      ]
+    },
+    {
+      "name": "Rust",
+      "level": "Intermediate",
+      "keywords": [
+        "UIs (Sycamore, Leptos, gtk4-rs)",
+        "FHIR (fake data generation)"
       ]
     },
     {

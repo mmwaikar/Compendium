@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // Store the path for later, accounting for /Compendium/ base path
+      var pathSegments = location.pathname.split('/').filter(function(p) { return p.length > 0; });
+      // Remove 'Compendium' from the path if it exists
+      if (pathSegments[0] === 'Compendium') {
+        pathSegments = pathSegments.slice(1);
+      }
+      sessionStorage.redirect = '/' + pathSegments.join('/');
+      // Redirect to index.html
+      location.replace('/Compendium/index.html');
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

@@ -26,5 +26,13 @@
     <script src="js/companyBarChart.js"></script>
     <script src="js/countryGraph.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+      // Handle 404 redirects for client-side routing
+      if (sessionStorage.redirect) {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        history.replaceState(null, null, redirect);
+      }
+    </script>
 </body>
 </html>

@@ -12,18 +12,21 @@
                             Icon="@(new Icons.Regular.Size20.Briefcase())" IconColor="Color.Accent"
                             @bind-Expanded="experienceExpanded">
                 <ChildContent>
-                    <FluentNavLink Href="experience/by-company">By Company</FluentNavLink>
-                    <FluentNavLink Href="experience/by-country">By Country</FluentNavLink>
-                    <FluentNavLink Href="experience/by-skills">By Skills</FluentNavLink>
-                </ChildContent>
-            </FluentNavGroup>
-            <FluentNavLink Href="skills" Icon="@(new Icons.Regular.Size20.CodeBlock())" IconColor="Color.Accent">Skills
-            </FluentNavLink>
-            <FluentNavLink Href="projects" Icon="@(new Icons.Regular.Size20.ClipboardTask())" IconColor="Color.Accent">
-                Projects</FluentNavLink>
-            </FluentNavMenu>
-        </nav>
-    </div>
+                    <FluentNavLink Href="experience/by-company" Icon="@(new Icons.Regular.Size20.BuildingSkyscraper())">
+                        By Company</FluentNavLink>
+                        <FluentNavLink Href="experience/by-country" Icon="@(new Icons.Regular.Size20.Globe())">By Country
+                        </FluentNavLink>
+                        <FluentNavLink Href="experience/by-skills" Icon="@(new Icons.Regular.Size20.BrainSparkle())">By
+                            Skills</FluentNavLink>
+                        </ChildContent>
+                    </FluentNavGroup>
+                    <FluentNavLink Href="skills" Icon="@(new Icons.Regular.Size20.CodeBlock())" IconColor="Color.Accent">Skills
+                    </FluentNavLink>
+                    <FluentNavLink Href="projects" Icon="@(new Icons.Regular.Size20.ClipboardTask())" IconColor="Color.Accent">
+                        Projects</FluentNavLink>
+                    </FluentNavMenu>
+                </nav>
+            </div>
 
 @code {
     private bool expanded = true;
