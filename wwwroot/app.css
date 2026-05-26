@@ -302,12 +302,29 @@ body {
     border-radius: 0.2rem;
 }
 
+
 .company-chart-host {
     width: 100%;
+    padding-bottom: 15rem;
 }
 
 .company-chart-host .company-chart {
     width: 100%;
+}
+
+.company-chart-scroll {
+    overflow-y: auto;
+    max-height: min(70vh, 38rem);
+}
+
+.company-chart-scroll .resume-card {
+    min-height: 28rem;
+}
+
+@media (max-width: 1366px) {
+    .company-chart-scroll {
+        max-height: min(66vh, 34rem);
+    }
 }
 
 .country-graph-host {

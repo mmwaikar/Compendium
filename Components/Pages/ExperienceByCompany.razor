@@ -23,7 +23,7 @@ else
                 displayed as total months in a MudBlazor bar chart.</FluentLabel>
             </FluentStack>
 
-            <FluentStack Class="resume-card" Orientation="Microsoft.FluentUI.AspNetCore.Components.Orientation.Vertical">
+            <FluentStack Class="company-chart-scroll resume-card" Orientation="Microsoft.FluentUI.AspNetCore.Components.Orientation.Vertical">
                 @if (companySummaries.Count == 0)
                 {
                     <FluentLabel>No work history was found in the resume data.</FluentLabel>
@@ -32,7 +32,7 @@ else
                 {
                     <div class="company-chart-host" @ref="chartContainer">
                         <MudChart ChartType="ChartType.Bar" Class="company-chart" ChartSeries="companySeries"
-                                  ChartLabels="companyLabels" ChartOptions="chartOptions" Width="100%" Height="450px" />
+                                  ChartLabels="companyLabels" ChartOptions="chartOptions" Width="100%" Height="400px" />
                     </div>
                 }
             </FluentStack>
