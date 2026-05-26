@@ -599,6 +599,22 @@ code {
     }
 }
 
+/* Custom spacing for FluentTab headers */
+.fluent-tabs .fluent-tab {
+    margin-right: 1.5rem;
+}
+
+.fluent-tabs .fluent-tab:last-child {
+    margin-right: 0;
+}
+
+/* Wider tree view for skills */
+.skills-treeview {
+    min-width: 420px;
+    max-width: 100%;
+    width: 48rem;
+}
+
 /* Table */
 
 table {

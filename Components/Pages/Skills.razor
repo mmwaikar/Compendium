@@ -14,38 +14,33 @@
 else
 {
     <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
-    <FluentStack Class="resume-heading" Orientation="Orientation.Vertical">
-        <FluentLabel Class="resume-eyebrow">Skills</FluentLabel>
-        <h1>Technical strengths</h1>
-        <FluentLabel Class="resume-summary">Skills with their related keywords.</FluentLabel>
-    </FluentStack>
+        <FluentStack Class="resume-heading" Orientation="Orientation.Vertical">
+            <FluentLabel Class="resume-eyebrow">Skills</FluentLabel>
+            <h1>Technical strengths</h1>
+            <FluentLabel Class="resume-summary">Skills with their related keywords.</FluentLabel>
+        </FluentStack>
 
-    <div class="skills-scroll">
-        <FluentStack Class="skills-grid" Orientation="Orientation.Horizontal">
-            @foreach (var skill in resume.Skills ?? [])
-            {
-                <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
-                    <FluentStack Class="timeline-header" Orientation="Orientation.Horizontal">
-                        <h2>@skill.Name</h2>
+        <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+            <FluentTreeView Class="skills-treeview">
+                @foreach (var skill in resume.Skills ?? [])
+                {
+                    <FluentTreeItem>
+                        <span style="font-weight:600;">@skill.Name</span>
                         @if (!string.IsNullOrWhiteSpace(skill.Level))
                         {
-                            <FluentBadge Appearance="Appearance.Accent">@skill.Level</FluentBadge>
+                            <FluentBadge Appearance="Appearance.Accent" Style="margin-left:0.5rem;">@skill.Level</FluentBadge>
                         }
-                    </FluentStack>
-
-                    @if (skill.Keywords?.Count > 0)
-                    {
-                        <ul class="resume-list skills-list">
+                        @if (skill.Keywords?.Count > 0)
+                        {
                             @foreach (var keyword in skill.Keywords)
                             {
-                                <li>@keyword</li>
+                                <FluentTreeItem>@keyword</FluentTreeItem>
                             }
-                        </ul>
-                    }
-                </FluentStack>
-            }
+                        }
+                    </FluentTreeItem>
+                }
+            </FluentTreeView>
         </FluentStack>
-    </div>
     </FluentStack>
 }
 
