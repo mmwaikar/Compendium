@@ -1,0 +1,86 @@
+@page "/blog-posts"
+@inject ResumeDataService ResumeDataService
+
+<PageTitle>Blog Posts</PageTitle>
+
+@if (resume is null)
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+            <FluentLabel>Loading blog posts...</FluentLabel>
+        </FluentStack>
+    </FluentStack>
+}
+else
+{
+    <FluentStack Class="resume-page" Orientation="Orientation.Vertical">
+        <FluentStack Class="resume-heading" Orientation="Orientation.Vertical">
+            <FluentLabel Class="resume-eyebrow">Blog Posts</FluentLabel>
+            <h1>Musings on experiences in life and programming.</h1>
+            <FluentLabel Class="resume-summary">
+                Articles published on the <a href="https://mmwaikar.wordpress.com/" target="_blank"
+                                             rel="noreferrer">WordPress</a> blog.
+            </FluentLabel>
+        </FluentStack>
+
+        @if (blogPosts.Count > 0)
+        {
+            <div class="resume-section-grid">
+                @foreach (var post in blogPosts)
+                {
+                    <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+                        @if (!string.IsNullOrWhiteSpace(post.Url))
+                        {
+                            <h4><a href="@post.Url" target="_blank" rel="noreferrer">@post.Name</a> (@FormatDate(post.ReleaseDate))</h4>
+                        }
+                        else
+                        {
+                            <h4>@post.Name (@FormatDate(post.ReleaseDate))</h4>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(post.Summary))
+                        {
+                            <FluentLabel>@post.Summary</FluentLabel>
+                        }
+                    </FluentStack>
+                }
+            </div>
+        }
+        else
+        {
+            <FluentStack Class="resume-card" Orientation="Orientation.Vertical">
+                <FluentLabel>No blog posts found in resume.json.</FluentLabel>
+            </FluentStack>
+        }
+    </FluentStack>
+}
+
+@code {
+    private Resume? resume;
+    private IReadOnlyList<Publication> blogPosts = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        resume = await ResumeDataService.GetResumeAsync();
+
+        blogPosts = (resume?.Publications ?? [])
+            .Where(static publication => IsBlogPost(publication))
+            .OrderByDescending(static publication => GetSortDate(publication.ReleaseDate))
+            .ToArray();
+    }
+
+    private static bool IsBlogPost(Publication publication)
+    {
+        return string.Equals(publication.Publisher, "WordPress", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static DateOnly GetSortDate(string? value)
+    {
+        return DateOnly.TryParse(value, out var date) ? date : DateOnly.MinValue;
+    }
+
+    private static string FormatDate(string? value)
+    {
+        return DateOnly.TryParse(value, out var date) ? date.ToString("MMMM yyyy") : value ?? string.Empty;
+    }
+}

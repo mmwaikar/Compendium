@@ -332,6 +332,34 @@
       "releaseDate": "2016-07-18",
       "url": "https://www.omg.org/sysml/MBSE++%20Bajaj_INCOSE_IS-2016.pdf",
       "summary": "This paper presents an approach for next-generation model-based systems engineering across the system lifecycle, labelled MBSE++."
+    },
+    {
+      "name": "DSLs in Rust",
+      "publisher": "WordPress",
+      "releaseDate": "2025-10-31",
+      "url": "https://mmwaikar.wordpress.com/2025/10/31/dsls-in-rust/",
+      "summary": ""
+    },
+    {
+      "name": "One year with Rust",
+      "publisher": "WordPress",
+      "releaseDate": "2025-06-23",
+      "url": "https://mmwaikar.wordpress.com/2025/06/23/one-year-with-rust/",
+      "summary": ""
+    },
+    {
+      "name": "Essential Scala tricks",
+      "publisher": "WordPress",
+      "releaseDate": "2022-01-27",
+      "url": "https://mmwaikar.wordpress.com/2022/01/27/essential-scala-tricks/",
+      "summary": ""
+    },
+    {
+      "name": "WPF, magic strings and some LINQ love",
+      "publisher": "WordPress",
+      "releaseDate": "2010-01-24",
+      "url": "https://mmwaikar.wordpress.com/2010/01/24/wpf-magic-strings-and-some-linq-love/",
+      "summary": ""
     }
   ],
   "skills": [
@@ -472,6 +500,16 @@
     }
   ],
   "projects": [
+    {
+      "name": "dept-os",
+      "description": "A department-standard desktop OS built on Fedora Kinoite (KDE Plasma + rpm-ostree) and sane defaults for developers",
+      "url": "https://github.com/mmwaikar/dept-os",
+      "highlights": [
+        "Fedora Kinoite",
+        "rpm-ostree",
+        "KDE Plasma"
+      ]
+    },
     {
       "name": "github-scraper",
       "description": "Scrape a GitHub repo for stars, forks, watching, releases, used and contributors stats (in Rust)",

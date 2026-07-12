@@ -54,6 +54,10 @@ else
 
 		@if (resume.Education?.Count > 0 || resume.Publications?.Count > 0)
 		{
+			var nonBlogPublications = (resume.Publications ?? [])
+				.Where(static publication => !IsBlogPost(publication))
+				.ToArray();
+
 			<div class="resume-section-grid equal-height-row">
 				<FluentStack Class="resume-card" Orientation="Orientation.Vertical">
 					<h2>Education</h2>
@@ -73,22 +77,29 @@ else
 
 				<FluentStack Class="resume-card" Orientation="Orientation.Vertical">
 					<h2>Publications</h2>
-					<ul class="resume-list">
-						@foreach (var publication in resume.Publications ?? [])
-						{
-							<li>
-								@if (!string.IsNullOrWhiteSpace(publication.Url))
-								{
-									<a href="@publication.Url" target="_blank" rel="noreferrer">@publication.Name</a>
-								}
-								else
-								{
-									<strong>@publication.Name</strong>
-								}
-								<FluentLabel>@publication.Publisher (@FormatDate(publication.ReleaseDate))</FluentLabel>
-							</li>
-						}
-					</ul>
+					@if (nonBlogPublications.Length > 0)
+					{
+						<ul class="resume-list">
+							@foreach (var publication in nonBlogPublications)
+							{
+								<li>
+									@if (!string.IsNullOrWhiteSpace(publication.Url))
+									{
+										<a href="@publication.Url" target="_blank" rel="noreferrer">@publication.Name</a>
+									}
+									else
+									{
+										<strong>@publication.Name</strong>
+									}
+									<FluentLabel>@publication.Publisher (@FormatDate(publication.ReleaseDate))</FluentLabel>
+								</li>
+							}
+						</ul>
+					}
+					else
+					{
+						<FluentLabel>No publications found.</FluentLabel>
+					}
 				</FluentStack>
 			</div>
 		}
@@ -164,5 +175,10 @@ else
 			.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
 			.Distinct(StringComparer.OrdinalIgnoreCase)
 			.ToArray();
+	}
+
+	private static bool IsBlogPost(Publication publication)
+	{
+		return string.Equals(publication.Publisher, "WordPress", StringComparison.OrdinalIgnoreCase);
 	}
 }
